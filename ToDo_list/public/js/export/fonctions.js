@@ -13,7 +13,7 @@ btnAdd.addEventListener('click', () => {
 
         // creation nom
         let y = document.createElement('div');
-        y.setAttribute('id', 'divText');
+        y.setAttribute('class', 'divText');
         a.appendChild(y);
 
         let b = document.createElement('h4');
@@ -49,16 +49,30 @@ btnAdd.addEventListener('click', () => {
         d.setAttribute('class', 'boutEdit');
         d.innerText = 'edit';
         x.appendChild(d);
+        let changer;
         d.addEventListener('click', ()=> {
             if (d.innerText === 'edit') {
-                d.innerText = 'editing';
+                d.innerText = 'editing'
                 c.setAttribute('class', 'd-none');
                 e.setAttribute('class', 'd-none');
+                b.remove();
+                changer = document.createElement('input');
+                changer.setAttribute('class', 'inputNom');
+                y.appendChild(changer);
             } else {
-                a.setAttribute('class', 'liste');
-                d.innerText = 'edit';
-                c.setAttribute('class', 'boutCheck');
-                e.setAttribute('class', 'boutSupp');
+                if (changer.value === "") {
+                    alert('veuillez entrer un nom')
+                } else {
+                    a.setAttribute('class', 'liste');
+                    d.innerText = 'edit';
+                    c.setAttribute('class', 'boutCheck');
+                    e.setAttribute('class', 'boutSupp');
+                    changer.remove();
+                    b = document.createElement('h4');
+                    b.setAttribute('class', 'listeNom');
+                    y.appendChild(b);
+                    b.innerText = changer.value;
+                };
             };
         });
 
@@ -92,6 +106,70 @@ btnAdd.addEventListener('click', () => {
             };
         });
     };
+    let tab = Array.from(divListe.children);
+    tab.forEach(element => {
+        btnToDo.addEventListener('click', () => {
+            if (element.children[1].children[0].innerText === 'checked') {
+                element.setAttribute('class','d-none');
+                element.children[0].setAttribute('class','d-none');
+                element.children[0].children[0].setAttribute('class','d-none');
+                element.children[1].setAttribute('class','d-none');
+                element.children[1].children[0].setAttribute('class','d-none');
+                element.children[1].children[1].setAttribute('class','d-none');
+                element.children[1].children[2].setAttribute('class','d-none');
+            } else if (element.children[1].children[0].innerText === 'check') {
+                element.setAttribute('class','liste');
+                element.children[0].setAttribute('class','divTexte');
+                element.children[0].children[0].setAttribute('class','listeNom');
+                element.children[1].setAttribute('class','divBout');
+                element.children[1].children[0].setAttribute('class','boutCheck');
+                element.children[1].children[1].setAttribute('class','boutEdit');
+                element.children[1].children[2].setAttribute('class','boutSupp');
+            };
+        });
+    });
+    tab.forEach(element => {
+        btnChecked.addEventListener('click', () => {
+            if (element.children[1].children[0].innerText === 'check') {
+                element.setAttribute('class','d-none');
+                element.children[0].setAttribute('class','d-none');
+                element.children[0].children[0].setAttribute('class','d-none');
+                element.children[1].setAttribute('class','d-none');
+                element.children[1].children[0].setAttribute('class','d-none');
+                element.children[1].children[1].setAttribute('class','d-none');
+                element.children[1].children[2].setAttribute('class','d-none');
+            } else if (element.children[1].children[0].innerText === 'checked') {
+                element.setAttribute('class','checked');
+                element.children[0].setAttribute('class','divTexte');
+                element.children[0].children[0].setAttribute('class','listeNom');
+                element.children[1].setAttribute('class','divBout');
+                element.children[1].children[0].setAttribute('class','boutCheck');
+                element.children[1].children[1].setAttribute('class','boutEdit');
+                element.children[1].children[2].setAttribute('class','boutSupp');
+            };
+        });
+    });
+    tab.forEach(element => {
+        btnAll.addEventListener('click', () => {
+            if (element.children[1].children[0].innerText === 'check') {
+                element.setAttribute('class','liste');
+                element.children[0].setAttribute('class','divTexte');
+                element.children[0].children[0].setAttribute('class','listeNom');
+                element.children[1].setAttribute('class','divBout');
+                element.children[1].children[0].setAttribute('class','boutCheck');
+                element.children[1].children[1].setAttribute('class','boutEdit');
+                element.children[1].children[2].setAttribute('class','boutSupp');
+            } else if (element.children[1].children[0].innerText === 'checked') {
+                element.setAttribute('class','checked');
+                element.children[0].setAttribute('class','divTexte');
+                element.children[0].children[0].setAttribute('class','listeNom');
+                element.children[1].setAttribute('class','divBout');
+                element.children[1].children[0].setAttribute('class','boutCheck');
+                element.children[1].children[1].setAttribute('class','boutEdit');
+                element.children[1].children[2].setAttribute('class','boutSupp');
+            };
+        });
+    });
 });
 
 // ajoutter une tache avec la touche : enter
