@@ -66,4 +66,4 @@ let divListe = document.createElement('div');
 divListe.setAttribute('id', 'divListe');
 div2.appendChild(divListe);
 
-export {btnAdd, input, body};
+export {btnAdd, input, body, btnToDo, btnChecked, btnAll, divListe};
